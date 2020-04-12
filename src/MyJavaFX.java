@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class MyJavaFX extends Application {
 	ObservableList<Integer> number_options = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 	ObservableList<String> room_options = FXCollections.observableArrayList("Single_room", "Double_room", "Delux_room",
 			"Pent_house");
+	
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -431,9 +433,6 @@ public class MyJavaFX extends Application {
 										   numberOfGuestsComboBox.getValue() == 0  ||
 										!isNullOrEmpty( typeOfRoomComboBox.getValue() ) ){
 											
-										
-
-											
 										if(typeOfRoomComboBox.getValue().equals("Combination(singles and doubles)")) {
 										
 											int roomsCanFit = 0;
@@ -637,22 +636,62 @@ public class MyJavaFX extends Application {
 						btnCurrentBookings.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent event) {
-
+								
+								// retrieve the data from the existing 
+								
+								
 								GridPane pane = new GridPane();
-								pane.setAlignment(Pos.CENTER);
+								pane.setAlignment(Pos.TOP_LEFT);
 								pane.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
 								pane.setHgap(5.5);
 								pane.setVgap(5.5);
-								pane.setMinWidth(400);
-								pane.setMinHeight(300);
-
+								pane.setMinWidth(800);
+						        pane.setMaxHeight(800);
+						        pane.setMinWidth(500);
+						        pane.setMinHeight(300);
+								
+								
 								Scene scene = new Scene(pane);
-								primaryStage.setTitle("ShowGridPane");
-								primaryStage.setScene(scene);
+								primaryStage.setTitle("ShowGridPane"); 
+								primaryStage.setScene(scene); 
 								primaryStage.setTitle("Hotel Reservation System");
 								primaryStage.show();
-							}
+								
+								
+								Text title = new Text("Hotel Reservation System");
+								title.setUnderline(true); 
+								Text curBookings = new Text("No of current bookings are:");	
+								Text bookingNum = new Text("Booking #");
+								Text custName = new Text("Customer Name");
+								Text roomType = new Text("Room Type");
+								Text noOfRoom = new Text("No of Rooms");
+								Text noOfDays = new Text("No of Days");
+							
+								Button btnBack = new Button("Back");
+								btnBack.setOnAction(new EventHandler<ActionEvent>() {
+									@Override
+									public void handle(ActionEvent event) {
+										
+										//TO DO - Save USER DATA
+										//Send back to options scene
+										primaryStage.setScene(optionsScene); 
 
+									}});
+								
+								// adding to pane
+								pane.add(title, 0, 1);
+								pane.add(curBookings, 0, 2);
+								
+								// adding to pane of parsed info
+								pane.add(bookingNum, 0, 3);
+								pane.add(custName, 1, 3);
+								pane.add(roomType, 2, 3);
+								pane.add(noOfRoom, 3, 3);
+								pane.add(noOfDays, 4, 3);
+								
+								
+								pane.add(btnBack, 0, 5);
+							}
 						});
 
 						btnAvailibleRooms.setOnAction(new EventHandler<ActionEvent>() {
@@ -672,8 +711,18 @@ public class MyJavaFX extends Application {
 								primaryStage.setScene(scene);
 								primaryStage.setTitle("Hotel Reservation System");
 								primaryStage.show();
-							}
+								
+								Text title = new Text("Hotel Reservation System");
+                                title.setUnderline(true);
+                                Text numAvailableRooms = new Text("No of Available Rooms");
+                                Text roomID = new Text("Room ID");
+                                Text roomType = new Text("Room Type");
 
+                                pane.add(title, 0, 1);
+                                pane.add(numAvailableRooms, 0, 3);
+                                pane.add(roomID, 0, 5);
+                                pane.add(roomType, 3, 5);
+							}
 						});
 
 						btnExit.setOnAction(new EventHandler<ActionEvent>() {
