@@ -4,6 +4,7 @@ public class Room {
 	 int room_ID;
 	 String room_type;
 	 double rate;
+	 boolean booked = false;
 	 
 	 Room(int room_ID, String room_type){
 
@@ -34,6 +35,7 @@ public class Room {
 		 }
 	     this.room_type = room_type;
 	 }
+	 
 
 	public int getRoom_ID() {
 		return room_ID;
